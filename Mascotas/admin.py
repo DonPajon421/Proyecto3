@@ -11,6 +11,6 @@ class ResponsableAdmin(admin.ModelAdmin):
 
 @admin.register(Mascota)
 class MascotaAdmin(admin.ModelAdmin):
-    list_display = ('id', 'nombre', 'anio_nacimiento', 'especie', 'responsable')
+    list_display = ('id', 'nombre', 'año_nacimiento', 'especie', 'responsable')
     list_filter = ('especie',)
     search_fields = ('nombre',)

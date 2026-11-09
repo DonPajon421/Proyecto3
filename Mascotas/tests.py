@@ -70,7 +70,7 @@ class ResponsableTests(APITestCase):
         self.assertEqual(r.status_code, status.HTTP_404_NOT_FOUND)
 
     def test_eliminar_en_cascada(self):
-        Mascota.objects.create(nombre='Luna', anio_nacimiento=2021, especie='Gato', responsable=self.ana)
+        Mascota.objects.create(nombre='Luna', año_nacimiento=2021, especie='Gato', responsable=self.ana)
         r = self.client.delete(f'/responsable/eliminar/{self.ana.id}')
         self.assertEqual(r.status_code, status.HTTP_204_NO_CONTENT)
         self.assertEqual(Mascota.objects.count(), 0)
@@ -90,11 +90,11 @@ class MascotaTests(APITestCase):
             nombre='Ana Pérez', correo='ana@ejemplo.cl', rut='11111111-1'
         )
         self.luna = Mascota.objects.create(
-            nombre='Luna', anio_nacimiento=2021, especie='Gato', responsable=self.ana
+            nombre='Luna', año_nacimiento=2021, especie='Gato', responsable=self.ana
         )
 
     def datos(self, **cambios):
-        base = {'nombre': 'Toby', 'anio_nacimiento': 2019, 'especie': 'Perro', 'responsable': self.ana.id}
+        base = {'nombre': 'Toby', 'año_nacimiento': 2019, 'especie': 'Perro', 'responsable': self.ana.id}
         base.update(cambios)
         return base
 
@@ -120,7 +120,7 @@ class MascotaTests(APITestCase):
         self.assertIn('responsable', r.data)
 
     def test_crear_anio_no_entero_400(self):
-        r = self.client.post('/mascota/crear', self.datos(anio_nacimiento='abc'), format='json')
+        r = self.client.post('/mascota/crear', self.datos(año_nacimiento='abc'), format='json')
         self.assertEqual(r.status_code, status.HTTP_400_BAD_REQUEST)
 
     def test_listar(self):
