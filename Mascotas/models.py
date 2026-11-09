@@ -17,7 +17,7 @@ class Responsable(models.Model):
 class Mascota(models.Model):
     id = models.AutoField(primary_key=True)  # int, PK
     nombre = models.CharField(max_length=100)
-    anio_nacimiento = models.IntegerField()
+    año_nacimiento = models.IntegerField()
     especie = models.CharField(max_length=50)
     # En la BD queda como la columna responsable_id (FK).
     # CASCADE: al eliminar un responsable se eliminan sus mascotas.
