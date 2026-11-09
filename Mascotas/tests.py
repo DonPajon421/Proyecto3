@@ -59,7 +59,7 @@ class ResponsableTests(APITestCase):
         r = self.client.patch(f'/responsable/modificar/{self.ana.id}', {'rut': '99999999-9'}, format='json')
         self.assertEqual(r.status_code, status.HTTP_200_OK)
         self.assertEqual(r.data['rut'], '99999999-9')
-        self.assertEqual(r.data['nombre'], 'Ana Pérez')  # lo demás no cambia
+        self.assertEqual(r.data['nombre'], 'Ana Pérez')
 
     def test_modificar_invalido_400(self):
         r = self.client.patch(f'/responsable/modificar/{self.ana.id}', {'correo': 'no-es-correo'}, format='json')
@@ -101,7 +101,7 @@ class MascotaTests(APITestCase):
     def test_crear_post(self):
         r = self.client.post('/mascota/crear', self.datos(), format='json')
         self.assertEqual(r.status_code, status.HTTP_201_CREATED)
-        self.assertEqual(r.data['responsable'], self.ana.id)  # el front depende de este campo
+        self.assertEqual(r.data['responsable'], self.ana.id)
 
     def test_crear_put(self):
         r = self.client.put('/mascota/crear', self.datos(), format='json')

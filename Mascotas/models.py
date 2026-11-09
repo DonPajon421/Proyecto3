@@ -2,7 +2,7 @@ from django.db import models
 
 
 class Responsable(models.Model):
-    id = models.AutoField(primary_key=True)  # int, PK
+    id = models.AutoField(primary_key=True)
     nombre = models.CharField(max_length=100)
     correo = models.EmailField(max_length=254, unique=True)
     rut = models.CharField(max_length=12)
@@ -15,12 +15,10 @@ class Responsable(models.Model):
 
 
 class Mascota(models.Model):
-    id = models.AutoField(primary_key=True)  # int, PK
+    id = models.AutoField(primary_key=True)
     nombre = models.CharField(max_length=100)
     anio_nacimiento = models.IntegerField()
     especie = models.CharField(max_length=50)
-    # En la BD queda como la columna responsable_id (FK).
-    # CASCADE: al eliminar un responsable se eliminan sus mascotas.
     responsable = models.ForeignKey(
         Responsable,
         on_delete=models.CASCADE,
