@@ -17,6 +17,20 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 
+from Mascotas import views
+
 urlpatterns = [
     path('admin/', admin.site.urls),
+
+    # Mascota
+    path('mascota/crear', views.crear_mascota, name='crear_mascota'),
+    path('mascotas', views.listar_mascotas, name='listar_mascotas'),
+    path('mascota/modificar/<int:id>', views.modificar_mascota, name='modificar_mascota'),
+    path('mascota/eliminar/<int:id>', views.eliminar_mascota, name='eliminar_mascota'),
+
+    # Responsable
+    path('responsable/crear', views.crear_responsable, name='crear_responsable'),
+    path('responsables', views.listar_responsable, name='listar_responsable'),
+    path('responsable/modificar/<int:id>', views.modificar_responsable, name='modificar_responsable'),
+    path('responsable/eliminar/<int:id>', views.eliminar_responsable, name='eliminar_responsable'),
 ]

@@ -88,6 +88,18 @@ DATABASES = {
 }
 
 
+# Django REST Framework
+# La actividad no usa JWT: los endpoints quedan abiertos.
+# Sin autenticación de sesión, DRF no exige token CSRF, así el front React
+# puede hacer POST/PATCH/DELETE aunque hayas iniciado sesión en /admin.
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': [],
+    'DEFAULT_PERMISSION_CLASSES': ['rest_framework.permissions.AllowAny'],
+    'UNAUTHENTICATED_USER': None,
+}
+
+
 # Password validation
 # https://docs.djangoproject.com/en/6.1/ref/settings/#auth-password-validators
 
